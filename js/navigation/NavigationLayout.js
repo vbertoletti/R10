@@ -15,7 +15,7 @@ const AboutStack = createStackNavigator(
     About: About
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation)
     })
   }
@@ -26,7 +26,7 @@ const ScheduleStack = createStackNavigator(
     Schedule: Schedule
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation)
     })
   }
@@ -36,7 +36,7 @@ const MapStack = createStackNavigator(
     Map: Map
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation)
     })
   }
@@ -47,7 +47,7 @@ const FavesStack = createStackNavigator(
     Faves: Faves
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       ...sharedNavigationOptions(navigation)
     })
   }
