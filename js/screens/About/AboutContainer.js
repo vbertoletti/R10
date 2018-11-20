@@ -1,22 +1,18 @@
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import { Text } from "react-native";
+import { View } from "react-native";
+import About from "./About";
+import React, { Component } from "react";
 
-const AboutContainer = () => ({
+class AboutContainer extends Component {
+  static navigationOptions = {
+    title: "About"
+  };
   render() {
     return (
-      <Query
-        query={gql`
-          {
-        `}
-      >
-        {({ loading, error, data }) => {
-          if (loading) return <Text> Loading... </Text>;
-          if (error) return <Text> Error... </Text>;
-        }}
-      </Query>
+      <View>
+        <About />
+      </View>
     );
   }
-});
+}
 
 export default AboutContainer;
