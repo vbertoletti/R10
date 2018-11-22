@@ -1,10 +1,10 @@
 import { View } from "react-native";
-import About from "./About";
+import Session from "./Session";
 import React, { Component } from "react";
 
-class AboutContainer extends Component {
+class SessionContainer extends Component {
   static navigationOptions = {
-    title: "About",
+    title: "Session",
     headerTitleStyle: {
       color: "white",
       fontFamily: "Montserrat"
@@ -13,10 +13,10 @@ class AboutContainer extends Component {
   render() {
     return (
       <View>
-        <About />
+        <Session />
       </View>
     );
   }
 }
 
-export default AboutContainer;
+export default SessionContainer;

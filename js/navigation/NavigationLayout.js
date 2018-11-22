@@ -1,12 +1,13 @@
 import React from "react";
 import {
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
 } from "react-navigation";
 import About from "../screens/About";
 import Schedule from "../screens/Schedule";
 import Map from "../screens/Map";
 import Faves from "../screens/Faves";
+import Session from "../screens/Session";
 import { sharedNavigationOptions } from "./config";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -23,7 +24,8 @@ const AboutStack = createStackNavigator(
 
 const ScheduleStack = createStackNavigator(
   {
-    Schedule: Schedule
+    Schedule: Schedule,
+    Session: Session
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
