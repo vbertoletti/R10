@@ -1,36 +1,26 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Platform,
-  ScrollView,
-  TouchableOpacity,
-  Image
-} from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Image, Platform } from "react-native";
 import styles from "./styles";
 import Icon from "react-native-vector-icons/Ionicons";
-import moment from "moment";
 
 const Session = ({ data }) => {
   return (
     <View>
       <ScrollView>
-        <Text>location</Text>
         <Icon
           name={Platform.select({
-            ios: "ios-heart",
-            android: "md-heart"
+            ios: "ios-close",
+            android: "md-close"
           })}
           size={20}
           color="#cf392a"
         />
-        <Text>session title</Text>
-        <Text>{moment().format("LT")}</Text>
-        <Text>session description</Text>
-        <Text>Presented by:</Text>
         <Image />
         <Text>Speaker Name</Text>
-        <TouchableOpacity />
+        <Text>Speaker bio</Text>
+        <TouchableOpacity>
+          <Text> Read More on Wikipedia</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

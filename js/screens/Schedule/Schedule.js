@@ -1,25 +1,44 @@
 import React from "react";
-import { View, Text, SectionList, StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  SectionList,
+  StatusBar,
+  TouchableOpacity,
+  Platform
+} from "react-native";
 import styles from "./styles";
-import { createStackNavigator, createAppContainer } from "react-navigation";
 import { withNavigation } from "react-navigation";
+import moment from "moment";
+import Icon from "react-native-vector-icons/Ionicons";
 
-const Schedule = () => {
+const Schedule = ({ data, navigation }) => {
   return (
     <View>
       <StatusBar barStyle="light-content" />
       <SectionList
-        renderItem={({ item, index, section }) => (
-          <Text
-            key={index}
-            onPress={() => this.props.navigation.navigate("Session")}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={() => {
+              navigation.navigate("Session", { key: item.id });
+            }}
           >
-            {item}
-          </Text>
+            <Text key={index}>{item}</Text>
+            {/* <Text>{item.location}</Text> */}
+            <Icon
+              name={Platform.select({
+                ios: "ios-heart",
+                android: "md-heart"
+              })}
+              size={20}
+              color="#cf392a"
+            />
+          </TouchableOpacity>
         )}
-        renderSectionHeader={({ section: { title } }) => (
+        renderSectionHeader={() => (
           <View style={styles.titleCntr}>
-            <Text style={styles.title}>{title}</Text>
+            <Text> {moment().format("LT")}</Text>
           </View>
         )}
         sections={[

@@ -1,22 +1,18 @@
-import { Text, ActivityIndicator } from "react-native";
-import About from "./About";
+import { View, Text, ActivityIndicator } from "react-native";
+import Speaker from "./Speaker";
 import React, { Component } from "react";
-import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
-const GET_ABOUT = gql`
+const GET_SPEAKER = gql`
   {
-    allConducts {
-      id
-      title
-      description
-    }
+  
   }
 `;
 
-class AboutContainer extends Component {
+class SpeakerContainer extends Component {
   static navigationOptions = {
-    title: "About",
+    title: "Speaker",
     headerTitleStyle: {
       color: "white",
       fontFamily: "Montserrat"
@@ -24,17 +20,17 @@ class AboutContainer extends Component {
   };
   render() {
     return (
-      <Query query={GET_ABOUT}>
+      <Query query={GET_SPEAKER}>
         {({ loading, error, data }) => {
           if (loading)
             return <ActivityIndicator color="#0000ff" size="large" />;
           if (error) return <Text>There's an error</Text>;
 
-          return <About data={data} />;
+          return <Speaker data={data} />;
         }}
       </Query>
     );
   }
 }
 
-export default AboutContainer;
+export default SpeakerContainer;
