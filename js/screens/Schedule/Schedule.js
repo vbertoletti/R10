@@ -12,20 +12,20 @@ import { withNavigation } from "react-navigation";
 import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const Schedule = ({ data, navigation }) => {
+const Schedule = ({ sessions, navigation }) => {
   return (
     <View>
       <StatusBar barStyle="light-content" />
       <SectionList
-        renderItem={({ item, index }) => (
+        renderItem={({ item }) => (
           <TouchableOpacity
             activeOpacity={0.6}
             onPress={() => {
               navigation.navigate("Session", { key: item.id });
             }}
           >
-            <Text key={index}>{item}</Text>
-            {/* <Text>{item.location}</Text> */}
+            <Text>{item.title}</Text>
+            <Text>{item.location}</Text>
             <Icon
               name={Platform.select({
                 ios: "ios-heart",
@@ -36,16 +36,12 @@ const Schedule = ({ data, navigation }) => {
             />
           </TouchableOpacity>
         )}
-        renderSectionHeader={() => (
+        renderSectionHeader={({ section }) => (
           <View style={styles.titleCntr}>
-            <Text> {moment().format("LT")}</Text>
+            <Text> {moment(section.title).format("LT")}</Text>
           </View>
         )}
-        sections={[
-          { title: "Title1", data: ["item1", "item2"] },
-          { title: "Title2", data: ["item3", "item4"] },
-          { title: "Title3", data: ["item5", "item6"] }
-        ]}
+        sections={sessions}
         keyExtractor={(item, index) => item + index}
       />
     </View>
