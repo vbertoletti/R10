@@ -42,7 +42,6 @@ class About extends React.Component {
           <View style={styles.logoCntr}>
             <Image
               source={require("../../assets/images/r10_logo.png")}
-              // style={{ width: 50, height: 50 }}
               style={styles.logo}
             />
           </View>

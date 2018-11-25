@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import PropTypes from "prop-types";
 
 const Schedule = ({ sessions, navigation, context }) => {
-  console.log(context)
+  console.log(context);
   return (
     <View>
       <StatusBar barStyle="light-content" />
@@ -26,21 +26,26 @@ const Schedule = ({ sessions, navigation, context }) => {
               navigation.navigate("Session", { key: item.id });
             }}
           >
-            <Text>{item.title}</Text>
-            <Text>{item.location}</Text>
-            <Icon
-              name={Platform.select({
-                ios: "ios-heart",
-                android: "md-heart"
-              })}
-              size={20}
-              color="#cf392a"
-            />
+            <View style={styles.scheduleCntr}>
+              <Text style={styles.scheduleTitle}>{item.title}</Text>
+              <Text style={styles.scheduleLocation}>{item.location}</Text>
+              <Icon
+                name={Platform.select({
+                  ios: "ios-heart",
+                  android: "md-heart"
+                })}
+                size={20}
+                color="#cf392a"
+                style={styles.heart}
+              />
+            </View>
           </TouchableOpacity>
         )}
         renderSectionHeader={({ section }) => (
           <View style={styles.titleCntr}>
-            <Text> {moment(section.title).format("LT")}</Text>
+            <Text style={styles.momentTime}>
+              {moment(section.title).format("LT")}
+            </Text>
           </View>
         )}
         sections={sessions}

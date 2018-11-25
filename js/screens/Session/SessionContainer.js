@@ -44,7 +44,6 @@ class SessionContainer extends Component {
 
           return (
             <FavesContext.Consumer>
-              //getting favesID
               {values => {
                 return <Session data={data} />;
               }}
