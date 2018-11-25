@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import FavesContext from "../../context/FavesContext/FavesProvider";
+import { formatSessionData } from "./helper";
 
 const GET_FAVES = gql`
   query($filter: SessionFilter) {
@@ -29,7 +30,12 @@ class FavesContainer extends Component {
                 return <ActivityIndicator color="#0000ff" size="large" />;
               if (error) return <Text>There's an error</Text>;
 
-              return <Faves data={data} />;
+              return (
+                <Faves
+                  faves={formatSessionData(data.allSessions)}
+                  faveIds={faveIds}
+                />
+              );
             }}
           </Query>
         )}

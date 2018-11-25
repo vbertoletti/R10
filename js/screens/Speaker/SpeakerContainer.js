@@ -1,12 +1,17 @@
-import { View, Text, ActivityIndicator } from "react-native";
+import { Text, ActivityIndicator } from "react-native";
 import Speaker from "./Speaker";
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 const GET_SPEAKER = gql`
-  {
-  
+  query($id: ID!) {
+    Speaker(id: $id) {
+      bio
+      image
+      name
+      url
+    }
   }
 `;
 
@@ -20,7 +25,10 @@ class SpeakerContainer extends Component {
   };
   render() {
     return (
-      <Query query={GET_SPEAKER}>
+      <Query
+        query={GET_SPEAKER}
+        variables={{ id: "cjh2ka8z500gs0108v08v6pyk" }}
+      >
         {({ loading, error, data }) => {
           if (loading)
             return <ActivityIndicator color="#0000ff" size="large" />;
