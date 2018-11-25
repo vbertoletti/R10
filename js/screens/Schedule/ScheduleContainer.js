@@ -37,8 +37,6 @@ class ScheduleContainer extends Component {
       </Query>
     );
   }
-
-
 }
 
 export default ScheduleContainer;

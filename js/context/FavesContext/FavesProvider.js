@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import realm from "../../config/models";
 
 const FavesContext = React.createContext();
+
 class FavesProvider extends Component {
   constructor(props) {
     super(props);
@@ -15,9 +16,10 @@ class FavesProvider extends Component {
     this.getAllFaves();
   }
 
-  createFave(id, date) {
+  createFave(id) {
     realm.write(() => {
-      realm.create("Faves", { id: id, faved_on: date });
+      const favedOn = new Date();
+      realm.create("Faves", { id, favedOn });
     });
   }
 
@@ -39,9 +41,7 @@ class FavesProvider extends Component {
 
   render() {
     return (
-      <FavesContext.Provider
-        value={{ ...this.state }}
-      >
+      <FavesContext.Provider value={{ ...this.state,  }}>
         {this.props.children}
       </FavesContext.Provider>
     );

@@ -6,7 +6,7 @@ const FaveSchema = {
   primaryKey: 'id',
   properties: {
     id: "int",
-    faved_on: {type: 'date', optional: true}
+    faved_on: {type: "date", optional: true}
   }
 };
 

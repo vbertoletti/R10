@@ -12,10 +12,11 @@ import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 
 const Session = ({ data }) => {
+  console.log("SESSION", data);
   return (
     <View>
       <ScrollView>
-        <Text>location</Text>
+        <Text>{data.Session.location}</Text>
         <Icon
           name={Platform.select({
             ios: "ios-heart",
@@ -24,12 +25,20 @@ const Session = ({ data }) => {
           size={20}
           color="#cf392a"
         />
-        <Text>session title</Text>
-        <Text>{moment().format("LT")}</Text>
-        <Text>session description</Text>
+        <Text>{data.Session.title}</Text>
+        <Text>{moment(data.Session.startTime).format("LT")}</Text>
+
+        <Text>{data.Session.description}</Text>
         <Text>Presented by:</Text>
-        <Image />
-        <Text>Speaker Name</Text>
+
+        <View>
+          <Image
+            style={{ width: 50, height: 50 }}
+            source={{ uri: data.Session.speaker.image }}
+          />
+          <Text>{data.Session.speaker.name}</Text>
+        </View>
+
         <TouchableOpacity />
       </ScrollView>
     </View>

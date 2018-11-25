@@ -30,7 +30,7 @@ class About extends React.Component {
           <Text style={styles.aboutHeadings}>Code of Conduct</Text>
 
           {this.props.data.allConducts.map(conduct => (
-            <View>
+            <View key={conduct.id}>
               <Text key={conduct.id} value={conduct.title}>
                 {conduct.title}
               </Text>

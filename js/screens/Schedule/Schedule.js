@@ -11,8 +11,10 @@ import styles from "./styles";
 import { withNavigation } from "react-navigation";
 import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
+import PropTypes from "prop-types";
 
-const Schedule = ({ sessions, navigation }) => {
+const Schedule = ({ sessions, navigation, context }) => {
+  console.log(context);
   return (
     <View>
       <StatusBar barStyle="light-content" />
@@ -49,3 +51,8 @@ const Schedule = ({ sessions, navigation }) => {
 };
 
 export default withNavigation(Schedule);
+
+Schedule.propTypes = {
+  sessions: PropTypes.array,
+  navigation: PropTypes.object
+};

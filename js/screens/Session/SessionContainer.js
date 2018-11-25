@@ -1,23 +1,25 @@
-import { View, Text, ActivityIndicator } from "react-native";
+import { Text, ActivityIndicator } from "react-native";
 import Session from "./Session";
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import FavesContext from "../../context/FavesContext";
 
 const GET_SESSION = gql`
-  {
-    allSessions {
-      id
-      title
+  query($id: ID) {
+    Session(id: $id) {
       description
+      id
+      location
       speaker {
         id
-        image
-        url
-        name
         bio
+        image
+        name
+        url
       }
       startTime
+      title
     }
   }
 `;
@@ -32,13 +34,22 @@ class SessionContainer extends Component {
   };
   render() {
     return (
-      <Query query={GET_SESSION}>
+      <Query
+        query={GET_SESSION}
+        variables={{ id: "cjh2j37mo163p01221qpcklry" }}
+      >
         {({ loading, error, data }) => {
-          if (loading)
-            return <ActivityIndicator color="#0000ff" size="large" />;
+          if (loading) return <ActivityIndicator size="large" />;
           if (error) return <Text>There's an error</Text>;
 
-          return <Session data={data} />;
+          return (
+            <FavesContext.Consumer>
+              {values => {
+                console.log('THIIIS', values)
+                return <Session data={data} />;
+              }}
+            </FavesContext.Consumer>
+          );
         }}
       </Query>
     );
