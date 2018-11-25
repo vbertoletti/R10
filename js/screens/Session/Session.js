@@ -12,7 +12,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 
 const Session = ({ data }) => {
-  console.log("SESSION", data);
   return (
     <View>
       <ScrollView>

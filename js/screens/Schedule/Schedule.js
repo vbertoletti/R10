@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import PropTypes from "prop-types";
 
 const Schedule = ({ sessions, navigation, context }) => {
-  console.log(context);
+  console.log(context)
   return (
     <View>
       <StatusBar barStyle="light-content" />

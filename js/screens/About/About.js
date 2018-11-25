@@ -38,14 +38,15 @@ class About extends React.Component {
   render() {
     return (
       <View>
-        <View style={styles.logoCntr}>
-          <Image
-            source={require("../../assets/images/r10_logo.png")}
-            style={{ width: 50, height: 50 }}
-            style={styles.logo}
-          />
-        </View>
         <ScrollView>
+          <View style={styles.logoCntr}>
+            <Image
+              source={require("../../assets/images/r10_logo.png")}
+              // style={{ width: 50, height: 50 }}
+              style={styles.logo}
+            />
+          </View>
+
           <Text style={styles.aboutText}>
             R10 is a conference that focuses on just about any topic related to
             dev.
@@ -58,18 +59,18 @@ class About extends React.Component {
           <Text style={styles.aboutHeadings}>Code of Conduct</Text>
 
           {this.props.data.allConducts.map(conduct => (
-            <View key={conduct.id}>
+            <View key={conduct.id} >
               <TouchableOpacity onPress={() => this.toggleDescription()}>
                 {this.state.isShown ? (
-                  <Text> - {conduct.title}</Text>
+                  <Text style={styles.conductText}> - {conduct.title}</Text>
                 ) : (
-                  <Text> + {conduct.title}</Text>
+                  <Text style={styles.conductText}> + {conduct.title}</Text>
                 )}
               </TouchableOpacity>
 
               {this.state.isShown && (
                 <Animated.View style={{ height: this.state.height }}>
-                  <Text>{conduct.description}</Text>
+                  <Text style={styles.conductDescription}>{conduct.description}</Text>
                 </Animated.View>
               )}
             </View>

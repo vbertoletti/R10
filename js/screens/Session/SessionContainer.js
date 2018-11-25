@@ -44,8 +44,8 @@ class SessionContainer extends Component {
 
           return (
             <FavesContext.Consumer>
+              //getting favesID
               {values => {
-                console.log('THIIIS', values)
                 return <Session data={data} />;
               }}
             </FavesContext.Consumer>
