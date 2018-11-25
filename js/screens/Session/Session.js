@@ -12,7 +12,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import LinearGradient from "react-native-linear-gradient";
 
-const Session = ({ data }) => {
+const Session = ({ data, navigation, context }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -27,19 +27,29 @@ const Session = ({ data }) => {
           style={styles.heart}
         />
         <Text style={styles.title}>{data.Session.title}</Text>
-        <Text style={styles.time}>{moment(data.Session.startTime).format("LT")}</Text>
+        <Text style={styles.time}>
+          {moment(data.Session.startTime).format("LT")}
+        </Text>
 
         <Text style={styles.description}>{data.Session.description}</Text>
         <Text>Presented by:</Text>
 
-        <View style={styles.speaker}>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: data.Session.speaker.image }}
-            style={styles.speakerImage}
-          />
-          <Text style={styles.speakerName}>{data.Session.speaker.name}</Text>
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("SpeakerModal", {
+              key: data.Session.speaker.id
+            });
+          }}
+        >
+          <View style={styles.speaker}>
+            <Image
+              style={{ width: 50, height: 50 }}
+              source={{ uri: data.Session.speaker.image }}
+              style={styles.speakerImage}
+            />
+            <Text style={styles.speakerName}>{data.Session.speaker.name}</Text>
+          </View>
+        </TouchableOpacity>
 
         <View>
           <LinearGradient
@@ -49,9 +59,7 @@ const Session = ({ data }) => {
             style={styles.linearGradient}
           >
             <TouchableOpacity>
-              <Text style={styles.sessionButton}>
-                Add To Faves
-              </Text>
+              <Text style={styles.sessionButton}>Add To Faves</Text>
             </TouchableOpacity>
           </LinearGradient>
         </View>

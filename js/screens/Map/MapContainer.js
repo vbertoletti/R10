@@ -4,7 +4,11 @@ import React, { Component } from "react";
 
 class MapContainer extends Component {
   static navigationOptions = {
-    title: "Map"
+    title: "Map",
+    headerTitleStyle: {
+      color: "white",
+      fontFamily: "Montserrat"
+    }
   };
   render() {
     return (

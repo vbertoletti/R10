@@ -1,12 +1,18 @@
 import { createStackNavigator, createAppContainer } from "react-navigation";
-import AboutStack from "./NavigationLayout";
+import NavigationLayout from "./NavigationLayout";
+import SpeakerModal from "./../screens/Speaker";
 
 const AppNavigator = createStackNavigator(
   {
-    About: AboutStack
+    NavigationLayout,
+    SpeakerModal: {
+      screen: SpeakerModal
+    }
   },
   {
+    mode: "modal",
     headerMode: "none"
-  }
+  },
+  { headerMode: "none" }
 );
 export default createAppContainer(AppNavigator);

@@ -1,4 +1,4 @@
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, Text } from "react-native";
 import Faves from "./Faves";
 import React, { Component } from "react";
 import gql from "graphql-tag";

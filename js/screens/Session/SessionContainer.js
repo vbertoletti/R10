@@ -30,9 +30,12 @@ class SessionContainer extends Component {
     headerTitleStyle: {
       color: "white",
       fontFamily: "Montserrat"
-    }
+    },
+    headerTintColor: "#fff"
   };
   render() {
+    const { navigation } = this.props;
+    
     return (
       <Query
         query={GET_SESSION}
@@ -45,7 +48,13 @@ class SessionContainer extends Component {
           return (
             <FavesContext.Consumer>
               {values => {
-                return <Session data={data} />;
+                return (
+                  <Session
+                    data={data}
+                    navigation={navigation}
+                    context={values}
+                  />
+                );
               }}
             </FavesContext.Consumer>
           );

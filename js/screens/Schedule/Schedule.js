@@ -13,8 +13,12 @@ import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
 import PropTypes from "prop-types";
 
-const Schedule = ({ sessions, navigation, context }) => {
-  console.log(context);
+//getting graphql schema data, navigation options and realm methods for the faves
+const Schedule = ({ data, navigation, context }) => {
+  // console.log("data", data, "navigation", navigation, "context", context);
+
+  const favedArray = [];
+
   return (
     <View>
       <StatusBar barStyle="light-content" />
@@ -29,15 +33,24 @@ const Schedule = ({ sessions, navigation, context }) => {
             <View style={styles.scheduleCntr}>
               <Text style={styles.scheduleTitle}>{item.title}</Text>
               <Text style={styles.scheduleLocation}>{item.location}</Text>
-              <Icon
-                name={Platform.select({
-                  ios: "ios-heart",
-                  android: "md-heart"
-                })}
-                size={20}
-                color="#cf392a"
-                style={styles.heart}
-              />
+
+              {favedArray.includes(item.id) ? (
+                <Text> hi </Text>
+              ) : (
+                <Icon
+                  name={Platform.select({
+                    ios: "ios-heart",
+                    android: "md-heart"
+                  })}
+                  size={20}
+                  color="#cf392a"
+                  style={styles.heart}
+                  onPress={() =>
+                    context.favesIds.map(item => favedArray.push(item.id))
+                  }
+                />
+              )}
+              {console.log(favedArray)}
             </View>
           </TouchableOpacity>
         )}
@@ -48,7 +61,7 @@ const Schedule = ({ sessions, navigation, context }) => {
             </Text>
           </View>
         )}
-        sections={sessions}
+        sections={data}
         keyExtractor={(item, index) => item + index}
       />
     </View>
@@ -58,6 +71,7 @@ const Schedule = ({ sessions, navigation, context }) => {
 export default withNavigation(Schedule);
 
 Schedule.propTypes = {
-  sessions: PropTypes.array,
-  navigation: PropTypes.object
+  data: PropTypes.array,
+  navigation: PropTypes.object,
+  context: PropTypes.object
 };

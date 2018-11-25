@@ -24,6 +24,7 @@ class SpeakerContainer extends Component {
     }
   };
   render() {
+    const { navigation } = this.props;
     return (
       <Query
         query={GET_SPEAKER}
@@ -34,7 +35,7 @@ class SpeakerContainer extends Component {
             return <ActivityIndicator color="#0000ff" size="large" />;
           if (error) return <Text>There's an error</Text>;
 
-          return <Speaker data={data} />;
+          return <Speaker data={data} navigation={navigation} />;
         }}
       </Query>
     );

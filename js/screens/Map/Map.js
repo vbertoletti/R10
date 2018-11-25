@@ -1,30 +1,22 @@
 import React from "react";
-import { View, Text } from "react-native";
-import styles from "./styles";
-import MapView from "react-native-maps";
+import { View, Image, Dimensions } from "react-native";
 
 class Map extends React.Component {
   render() {
     return (
       <View>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: 49.2827,
-            longitude: -123.1207,
-            latitudeDelta: 1,
-            longitudeDelta: 1
+        {/* 
+        source= https://stackoverflow.com/questions/33804500/screen-width-in-react-native */}
+        <Image
+          source={require("../../assets/images/map.png")}
+          style={{
+            width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height
           }}
         />
       </View>
     );
   }
 }
-
-// const styles = StyleSheet.create({
-//   map: {
-//     ...StyleSheet.absoluteFillObject
-//   }
-// });
 
 export default Map;

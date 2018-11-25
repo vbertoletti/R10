@@ -46,7 +46,8 @@ class FavesProvider extends Component {
           ...this.state,
           deleteFave: this.deleteFave,
           getAllFaves: this.getAllFaves,
-          createFave: this.createFave
+          createFave: this.createFave,
+          faveIds: this.state.faveIds
         }}
       >
         {this.props.children}
