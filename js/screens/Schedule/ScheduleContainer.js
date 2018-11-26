@@ -7,7 +7,7 @@ import { formatSessionData } from "../../lib/helper";
 import FavesContext from "../../context/FavesContext";
 import Loader from "../../components/Loader";
 
-const GET_SCHEDULE = gql`
+const AllSessionsSchedule = gql`
   {
     allSessions {
       startTime
@@ -28,7 +28,7 @@ class ScheduleContainer extends Component {
   };
   render() {
     return (
-      <Query query={GET_SCHEDULE}>
+      <Query query={AllSessionsSchedule}>
         {({ loading, error, data }) => {
           if (loading) return <Loader />;
           if (error) return <Text>There's an error</Text>;

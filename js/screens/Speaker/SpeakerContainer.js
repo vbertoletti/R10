@@ -5,7 +5,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Loader from "../../components/Loader";
 
-const GET_SPEAKER = gql`
+const SpeakerQuery = gql`
   query($id: ID!) {
     Speaker(id: $id) {
       bio
@@ -28,7 +28,7 @@ class SpeakerContainer extends Component {
   render() {
     return (
       <Query
-        query={GET_SPEAKER}
+        query={SpeakerQuery}
         variables={{ id: this.props.navigation.getParam("id") }}
       >
         {({ loading, error, data }) => {

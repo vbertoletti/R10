@@ -6,7 +6,7 @@ import gql from "graphql-tag";
 import FavesContext from "../../context/FavesContext/FavesProvider";
 import Loader from "../../components/Loader";
 
-const GET_SESSION = gql`
+const Sessions = gql`
   query($id: ID) {
     Session(id: $id) {
       description
@@ -37,7 +37,7 @@ class SessionContainer extends Component {
   render() {
     return (
       <Query
-        query={GET_SESSION}
+        query={Sessions}
         variables={{ id: this.props.navigation.getParam("key") }}
       >
         {({ loading, error, data }) => {

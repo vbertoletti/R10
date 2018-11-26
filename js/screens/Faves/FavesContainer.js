@@ -7,8 +7,8 @@ import { Text } from "react-native";
 import { formatSessionData } from "../../lib/helper";
 import Loader from "../../components/Loader";
 
-const GET_FAVES = gql`
-  query getFiltered($filter: SessionFilter) {
+const AllSessions = gql`
+  query getFaved($filter: SessionFilter) {
     allSessions(filter: $filter) {
       id
       title
@@ -37,7 +37,7 @@ class FavesContainer extends Component {
     return (
       <FavesContext.Consumer>
         {({ faveIds }) => (
-          <Query query={GET_FAVES} variables={{ filter: { id_in: faveIds } }}>
+          <Query query={AllSessions} variables={{ filter: { id_in: faveIds } }}>
             {({ loading, error, data }) => {
               if (loading) return <Loader />;
               if (error) return <Text>There's an error</Text>;

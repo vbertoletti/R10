@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import Loader from "../../components/Loader";
 
-const GET_ABOUT = gql`
+const AllConducts = gql`
   {
     allConducts {
       id
@@ -25,7 +25,7 @@ class AboutContainer extends Component {
   };
   render() {
     return (
-      <Query query={GET_ABOUT}>
+      <Query query={AllConducts}>
         {({ loading, error, data }) => {
           if (loading) return <Loader />;
           if (error) return <Text>There's an error</Text>;
