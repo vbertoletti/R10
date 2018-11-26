@@ -11,9 +11,9 @@ import styles from "./styles";
 import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import LinearGradient from "react-native-linear-gradient";
+import PropTypes from "prop-types";
 
 const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
-  console.log(data)
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -56,13 +56,23 @@ const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
             end={{ x: 1.0, y: 0.0 }}
             style={styles.linearGradient}
           >
-            <TouchableOpacity
-              onPress={() => {
-                createFave(data.id);
-              }}
-            >
-              <Text style={styles.sessionButton}>Add To Faves</Text>
-            </TouchableOpacity>
+            {faveIds.includes(data.id) ? (
+              <TouchableOpacity
+                onPress={() => {
+                  deleteFave(data.id);
+                }}
+              >
+                <Text style={styles.sessionButton}>Remove From Faves</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  createFave(data.id);
+                }}
+              >
+                <Text style={styles.sessionButton}>Add To Faves</Text>
+              </TouchableOpacity>
+            )}
           </LinearGradient>
         </View>
       </ScrollView>
@@ -71,3 +81,11 @@ const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
 };
 
 export default Session;
+
+Session.propTypes = {
+  data: PropTypes.object,
+  createFave: PropTypes.func,
+  deleteFave: PropTypes.func,
+  faveIds: PropTypes.array,
+  navigation: PropTypes.object
+};

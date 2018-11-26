@@ -10,6 +10,7 @@ import {
 import styles from "../Schedule/styles";
 import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
+import PropTypes from "prop-types";
 
 const Faves = ({ faves, faveIds, navigation }) => {
   return (
@@ -56,3 +57,9 @@ const Faves = ({ faves, faveIds, navigation }) => {
 };
 
 export default Faves;
+
+Faves.propTypes = {
+  faves: PropTypes.array,
+  navigation: PropTypes.object,
+  faveIds: PropTypes.string
+};

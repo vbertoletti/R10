@@ -6,7 +6,7 @@ import Schedule from "./../screens/Schedule";
 import Faves from "./../screens/Faves";
 import { sharedNavigationOptions } from "./config";
 import Session from "./../screens/Session";
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from "react-native";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 

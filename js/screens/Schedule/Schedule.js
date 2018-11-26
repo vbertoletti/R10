@@ -63,5 +63,6 @@ export default withNavigation(Schedule);
 
 Schedule.propTypes = {
   data: PropTypes.array,
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  context: PropTypes.object
 };

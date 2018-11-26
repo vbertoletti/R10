@@ -14,7 +14,6 @@ import PropTypes from "prop-types";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const Speaker = ({ data, navigation }) => {
-  //react native linking docs, basic usage
   //canOpenURL(url) -> Determine whether or not an installed app can handle a given URL, returns promise.
   linkExternal = () => {
     Linking.canOpenURL(data.Speaker.url)
@@ -69,9 +68,9 @@ const Speaker = ({ data, navigation }) => {
   );
 };
 
+export default Speaker;
+
 Speaker.propTypes = {
   data: PropTypes.object,
   navigation: PropTypes.object
 };
-
-export default Speaker;
