@@ -12,26 +12,29 @@ import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import LinearGradient from "react-native-linear-gradient";
 
-const Session = ({ data, createFave, deleteFave, faveIds, navigation}) => {
+const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
+  console.log(data)
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.sessionLocation}>{data.location}</Text>
-        <Icon
-          name={Platform.select({
-            ios: "ios-heart",
-            android: "md-heart"
-          })}
-          size={20}
-          color="#cf392a"
-          style={styles.heart}
-        />
+        {faveIds.includes(data.id) ? (
+          <Text />
+        ) : (
+          <Icon
+            name={Platform.select({
+              ios: "ios-heart",
+              android: "md-heart"
+            })}
+            size={20}
+            color="#cf392a"
+            style={styles.heart}
+          />
+        )}
         <Text style={styles.title}>{data.title}</Text>
         <Text style={styles.time}>{moment(data.startTime).format("LT")}</Text>
-
         <Text style={styles.description}>{data.description}</Text>
         <Text>Presented by:</Text>
-
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("SpeakerModal", { id: data.speaker.id });
@@ -46,7 +49,6 @@ const Session = ({ data, createFave, deleteFave, faveIds, navigation}) => {
             <Text style={styles.speakerName}>{data.speaker.name}</Text>
           </View>
         </TouchableOpacity>
-
         <View>
           <LinearGradient
             colors={["#9963ea", "#8797D6"]}
