@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import FavesContext from "../../context/FavesContext/FavesProvider";
-import Loader from "../../components/Loader"
+import Loader from "../../components/Loader";
 
 const GET_SESSION = gql`
   query($id: ID) {
@@ -46,12 +46,11 @@ class SessionContainer extends Component {
           if (data) {
             return (
               <FavesContext.Consumer>
-                {({ faveIds, createFave, deleteFave }) => (
+                {values => (
                   <Session
                     data={data.Session}
-                    createFave={createFave}
-                    deleteFave={deleteFave}
-                    faveIds={faveIds}
+                    methods={values}
+                    faveIds={values.faveIds}
                     navigation={this.props.navigation}
                   />
                 )}

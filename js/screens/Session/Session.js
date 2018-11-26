@@ -14,7 +14,8 @@ import LinearGradient from "react-native-linear-gradient";
 import PropTypes from "prop-types";
 import SharedStyles from "../../config/styles";
 
-const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
+const Session = ({ data, faveIds, methods, navigation }) => {
+  console.log(data, faveIds, methods, navigation)
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -68,7 +69,7 @@ const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
             {faveIds.includes(data.id) ? (
               <TouchableOpacity
                 onPress={() => {
-                  deleteFave(data.id);
+                  methods.deleteFave(data.id);
                 }}
               >
                 <Text style={styles.sessionButton}>Remove From Faves</Text>
@@ -76,7 +77,7 @@ const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
             ) : (
               <TouchableOpacity
                 onPress={() => {
-                  createFave(data.id);
+                  methods.createFave(data.id);
                 }}
               >
                 <Text style={styles.sessionButton}>Add To Faves</Text>
@@ -93,8 +94,7 @@ export default Session;
 
 Session.propTypes = {
   data: PropTypes.object,
-  createFave: PropTypes.func,
-  deleteFave: PropTypes.func,
   faveIds: PropTypes.array,
+  methods: PropTypes.object,
   navigation: PropTypes.object
 };

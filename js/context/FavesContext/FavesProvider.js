@@ -8,47 +8,38 @@ class FavesProvider extends Component {
       faveIds: []
     };
   }
-  getFavedSessionsIds() {
-    const getAllFaves = realm.objects("Faves").map(element => element.id);
-    this.setState({ faveIds: getAllFaves });
-  }
 
   componentDidMount() {
-    this.getFavedSessionsIds();
+    this.favedIds();
   }
 
+  getFaves = () => {
+    return realm.objects("Faves").map(elem => elem.id);
+  };
   createFave(id) {
-    try {
-      realm.write(() => {
-        realm.create("Faves", { id: id, faved_on: new Date() });
-      });
-      this.queryAllFaves();
-      this.setState({ faveIds: favs });
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  queryAllFaves() {
     realm.write(() => {
-      let favs = realm.objects("Faves").map(element => element.id);
-      this.setState({ faveIds: favs });
+      realm.create("Faves", { id: id, faved_on: new Date() });
     });
+    this.queryAllFaves();
   }
-
   deleteFave(id) {
     realm.write(() => {
-      const deleteFaveId = realm.objects("Faves").filtered(`id ==$0`, id);
-      realm.delete(deleteFaveId);
+      const deleteId = realm.objects("Faves").filtered(`id ==$0`, id);
+      realm.delete(deleteId);
     });
+    this.queryAllFaves();
   }
+
+  favedIds = () => {
+    this.setState({ faveIds: this.getFaves() });
+  };
 
   render() {
     return (
       <FavesContext.Provider
         value={{
           ...this.state,
-          queryAllFaves: this.queryAllFaves,
+          queryAllFaves: this.favedIds,
           deleteFave: this.deleteFave,
           createFave: this.createFave
         }}
