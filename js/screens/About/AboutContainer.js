@@ -1,8 +1,9 @@
-import { Text, ActivityIndicator } from "react-native";
+import { Text } from "react-native";
 import About from "./About";
 import React, { Component } from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import Loader from "../../components/Loader";
 
 const GET_ABOUT = gql`
   {
@@ -26,8 +27,7 @@ class AboutContainer extends Component {
     return (
       <Query query={GET_ABOUT}>
         {({ loading, error, data }) => {
-          if (loading)
-            return <ActivityIndicator color="#0000ff" size="large" />;
+          if (loading) return <Loader />;
           if (error) return <Text>There's an error</Text>;
 
           return <About data={data} />;

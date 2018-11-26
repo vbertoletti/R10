@@ -1,8 +1,9 @@
-import { Text, ActivityIndicator } from "react-native";
+import { Text } from "react-native";
 import Speaker from "./Speaker";
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import Loader from "../../components/Loader";
 
 const GET_SPEAKER = gql`
   query($id: ID!) {
@@ -31,8 +32,7 @@ class SpeakerContainer extends Component {
         variables={{ id: this.props.navigation.getParam("id") }}
       >
         {({ loading, error, data }) => {
-          if (loading)
-            return <ActivityIndicator color="#0000ff" size="large" />;
+          if (loading) return <Loader />;
           if (error) return <Text>There's an error</Text>;
 
           return <Speaker data={data} navigation={this.props.navigation} />;

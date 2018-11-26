@@ -3,8 +3,9 @@ import Faves from "./Faves";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import FavesContext from "../../context/FavesContext/FavesProvider";
-import { ActivityIndicator, Text } from "react-native";
+import { Text } from "react-native";
 import { formatSessionData } from "../../lib/helper";
+import Loader from "../../components/Loader";
 
 const GET_FAVES = gql`
   query getFiltered($filter: SessionFilter) {
@@ -38,7 +39,7 @@ class FavesContainer extends Component {
         {({ faveIds }) => (
           <Query query={GET_FAVES} variables={{ filter: { id_in: faveIds } }}>
             {({ loading, error, data }) => {
-              if (loading) return <ActivityIndicator />;
+              if (loading) return <Loader />;
               if (error) return <Text>There's an error</Text>;
               if (data) {
                 return (

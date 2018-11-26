@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
     marginLeft: 5
   },
   scheduleCntr: {
-    margin: 10
+    margin: 10,
+  
   },
   scheduleLocation: {
     marginTop: 5,

@@ -28,16 +28,15 @@ const Faves = ({ faves, faveIds, navigation }) => {
               <View style={styles.scheduleCntr}>
                 <Text style={styles.scheduleTitle}>{item.title}</Text>
                 <Text style={styles.scheduleLocation}>{item.location}</Text>
-                {faveIds.find(item => item === item.id) && (
-                  <Icon
-                    name={Platform.select({
-                      ios: "ios-heart",
-                      android: "md-heart"
-                    })}
-                    size={20}
-                    color="#cf392a"
-                  />
-                )}
+                <Icon
+                  name={Platform.select({
+                    ios: "ios-heart",
+                    android: "md-heart"
+                  })}
+                  size={20}
+                  color="#cf392a"
+                  style={styles.heart}
+                />
               </View>
             </View>
           </TouchableOpacity>
@@ -60,6 +59,5 @@ export default Faves;
 
 Faves.propTypes = {
   faves: PropTypes.array,
-  navigation: PropTypes.object,
-  faveIds: PropTypes.string
+  navigation: PropTypes.object
 };

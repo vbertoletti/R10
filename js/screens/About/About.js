@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import styles from "./styles";
 import PropTypes from "prop-types";
+import SharedStyles from "../../config/styles"
 
 class About extends React.Component {
   constructor(props) {
@@ -46,16 +47,16 @@ class About extends React.Component {
             />
           </View>
 
-          <Text style={styles.aboutText}>
+          <Text style={[styles.aboutText, SharedStyles.projectFont]}>
             R10 is a conference that focuses on just about any topic related to
             dev.
           </Text>
-          <Text style={styles.aboutHeadings}>Date & Venue</Text>
-          <Text style={styles.aboutText}>
+          <Text style={[styles.aboutHeadings, SharedStyles.projectFont]}>Date & Venue</Text>
+          <Text style={[styles.aboutText, SharedStyles.projectFont]}>
             The R10 conference will take place on Tuesday, June 27th, 2017 in
             Vancouver, BC.
           </Text>
-          <Text style={styles.aboutHeadings}>Code of Conduct</Text>
+          <Text style={[styles.aboutHeadings, SharedStyles.projectFont]}>Code of Conduct</Text>
 
           {this.props.data.allConducts.map(conduct => (
             <View key={conduct.id} >
@@ -75,7 +76,7 @@ class About extends React.Component {
             </View>
           ))}
 
-          <View style={styles.aboutFooter}>
+          <View style={[styles.aboutFooter, SharedStyles.projectFont]}>
             <Text>© RED Academy 2017</Text>
           </View>
         </ScrollView>
