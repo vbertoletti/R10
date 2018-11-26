@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
 import SharedStyles from "../../config/styles";
 
 const Session = ({ data, faveIds, methods, navigation }) => {
-  console.log(data, faveIds, methods, navigation)
+  console.log(data, faveIds, methods, navigation);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -48,16 +48,24 @@ const Session = ({ data, faveIds, methods, navigation }) => {
             navigation.navigate("SpeakerModal", { id: data.speaker.id });
           }}
         >
-          <View style={styles.speaker}>
-            <Image
-              style={{ width: 50, height: 50 }}
-              source={{ uri: data.speaker.image }}
-              style={styles.speakerImage}
-            />
-            <Text style={[styles.speakerName, SharedStyles.projectFont]}>
-              {data.speaker.name}
-            </Text>
-          </View>
+          {data.speaker ? (
+            <View style={styles.speaker}>
+              <Image
+                style={{ width: 50, height: 50 }}
+                source={{ uri: data.speaker.image }}
+                style={styles.speakerImage}
+              />
+              <Text style={[styles.speakerName, SharedStyles.projectFont]}>
+                {data.speaker.name}
+              </Text>
+            </View>
+          ) : (
+            <View style={styles.speaker}>
+              <Text style={[styles.speakerName, SharedStyles.projectFont]}>
+                You! Go network 🤝{" "}
+              </Text>
+            </View>
+          )}
         </TouchableOpacity>
         <View>
           <LinearGradient
