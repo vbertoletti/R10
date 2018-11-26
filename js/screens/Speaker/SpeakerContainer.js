@@ -11,6 +11,7 @@ const GET_SPEAKER = gql`
       image
       name
       url
+      id
     }
   }
 `;
@@ -24,18 +25,17 @@ class SpeakerContainer extends Component {
     }
   };
   render() {
-    const { navigation } = this.props;
     return (
       <Query
         query={GET_SPEAKER}
-        variables={{ id: "cjh2ka8z500gs0108v08v6pyk" }}
+        variables={{ id: this.props.navigation.getParam("id") }}
       >
         {({ loading, error, data }) => {
           if (loading)
             return <ActivityIndicator color="#0000ff" size="large" />;
           if (error) return <Text>There's an error</Text>;
 
-          return <Speaker data={data} navigation={navigation} />;
+          return <Speaker data={data} navigation={this.props.navigation} />;
         }}
       </Query>
     );

@@ -34,34 +34,32 @@ class SessionContainer extends Component {
     headerTintColor: "#fff"
   };
   render() {
-    const { navigation } = this.props;
-    
     return (
       <Query
         query={GET_SESSION}
-        variables={{ id: "cjh2j37mo163p01221qpcklry" }}
+        variables={{ id: this.props.navigation.getParam("key") }}
       >
         {({ loading, error, data }) => {
           if (loading) return <ActivityIndicator size="large" />;
           if (error) return <Text>There's an error</Text>;
-
-          return (
-            <FavesContext.Consumer>
-              {values => {
-                return (
+          if (data) {
+            return (
+              <FavesContext.Consumer>
+                {({ faveIds, createFave, deleteFave }) => (
                   <Session
-                    data={data}
-                    navigation={navigation}
-                    context={values}
+                    data={data.Session}
+                    createFave={createFave}
+                    deleteFave={deleteFave}
+                    faveIds={faveIds}
+                    navigation={this.props.navigation}
                   />
-                );
-              }}
-            </FavesContext.Consumer>
-          );
+                )}
+              </FavesContext.Consumer>
+            );
+          }
         }}
       </Query>
     );
   }
 }
-
 export default SessionContainer;

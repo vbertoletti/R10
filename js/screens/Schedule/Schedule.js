@@ -15,7 +15,6 @@ import PropTypes from "prop-types";
 
 //getting graphql schema data, navigation options and realm methods for the faves
 const Schedule = ({ data, navigation, context }) => {
-  // console.log("data", data, "navigation", navigation, "context", context);
 
   const favedArray = [];
 

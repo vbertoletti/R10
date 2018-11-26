@@ -12,11 +12,11 @@ import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import LinearGradient from "react-native-linear-gradient";
 
-const Session = ({ data, navigation, context }) => {
+const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={styles.sessionLocation}>{data.Session.location}</Text>
+        <Text style={styles.sessionLocation}>{data.location}</Text>
         <Icon
           name={Platform.select({
             ios: "ios-heart",
@@ -26,28 +26,24 @@ const Session = ({ data, navigation, context }) => {
           color="#cf392a"
           style={styles.heart}
         />
-        <Text style={styles.title}>{data.Session.title}</Text>
-        <Text style={styles.time}>
-          {moment(data.Session.startTime).format("LT")}
-        </Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text style={styles.time}>{moment(data.startTime).format("LT")}</Text>
 
-        <Text style={styles.description}>{data.Session.description}</Text>
+        <Text style={styles.description}>{data.description}</Text>
         <Text>Presented by:</Text>
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("SpeakerModal", {
-              key: data.Session.speaker.id
-            });
+            navigation.navigate("SpeakerModal", { id: data.speaker.id });
           }}
         >
           <View style={styles.speaker}>
             <Image
               style={{ width: 50, height: 50 }}
-              source={{ uri: data.Session.speaker.image }}
+              source={{ uri: data.speaker.image }}
               style={styles.speakerImage}
             />
-            <Text style={styles.speakerName}>{data.Session.speaker.name}</Text>
+            <Text style={styles.speakerName}>{data.speaker.name}</Text>
           </View>
         </TouchableOpacity>
 
@@ -58,7 +54,11 @@ const Session = ({ data, navigation, context }) => {
             end={{ x: 1.0, y: 0.0 }}
             style={styles.linearGradient}
           >
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                createFave(data.id);
+              }}
+            >
               <Text style={styles.sessionButton}>Add To Faves</Text>
             </TouchableOpacity>
           </LinearGradient>

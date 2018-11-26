@@ -13,19 +13,29 @@ class FavesProvider extends Component {
   }
 
   componentDidMount() {
-    this.getAllFaves();
+    this.FavedIdsSession();
+  }
+
+  FavedIdsSession() {
+    const getAllFaves = realm.objects("Faves").map(element => element.id);
+    this.setState({ faveIds: getAllFaves });
   }
 
   createFave(id) {
-    realm.write(() => {
-      const favedOn = new Date();
-      realm.create("Faves", { id, favedOn });
-    });
+    try {
+      realm.write(() => {
+        realm.create("Faves", { id: id, faved_on: new Date() });
+      });
+      this.queryAllFaves();
+      this.setState({ faveIds: favs });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   getAllFaves() {
     realm.write(() => {
-      let favs = realm.objects("Faves");
+      let favs = realm.objects("Faves").map(element => element.id);
       this.setState({ faveIds: favs });
     });
   }
@@ -46,8 +56,7 @@ class FavesProvider extends Component {
           ...this.state,
           deleteFave: this.deleteFave,
           getAllFaves: this.getAllFaves,
-          createFave: this.createFave,
-          faveIds: this.state.faveIds
+          createFave: this.createFave
         }}
       >
         {this.props.children}
