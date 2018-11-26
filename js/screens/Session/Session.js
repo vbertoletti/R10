@@ -12,12 +12,15 @@ import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import LinearGradient from "react-native-linear-gradient";
 import PropTypes from "prop-types";
+import SharedStyles from "../../config/styles";
 
 const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={styles.sessionLocation}>{data.location}</Text>
+        <Text style={[styles.sessionLocation, SharedStyles.projectFont]}>
+          {data.location}
+        </Text>
         {faveIds.includes(data.id) ? (
           <Text />
         ) : (
@@ -31,9 +34,13 @@ const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
             style={styles.heart}
           />
         )}
-        <Text style={styles.title}>{data.title}</Text>
+        <Text style={[styles.title, SharedStyles.projectFont]}>
+          {data.title}
+        </Text>
         <Text style={styles.time}>{moment(data.startTime).format("LT")}</Text>
-        <Text style={styles.description}>{data.description}</Text>
+        <Text style={[styles.description, SharedStyles.projectFont]}>
+          {data.description}
+        </Text>
         <Text>Presented by:</Text>
         <TouchableOpacity
           onPress={() => {
@@ -46,7 +53,9 @@ const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
               source={{ uri: data.speaker.image }}
               style={styles.speakerImage}
             />
-            <Text style={styles.speakerName}>{data.speaker.name}</Text>
+            <Text style={[styles.speakerName, SharedStyles.projectFont]}>
+              {data.speaker.name}
+            </Text>
           </View>
         </TouchableOpacity>
         <View>

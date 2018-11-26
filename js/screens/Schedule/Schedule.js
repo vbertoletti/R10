@@ -12,6 +12,7 @@ import { withNavigation } from "react-navigation";
 import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
 import PropTypes from "prop-types";
+import SharedStyles from "../../config/styles";
 
 const Schedule = ({ data, navigation, context }) => {
   return (
@@ -26,8 +27,12 @@ const Schedule = ({ data, navigation, context }) => {
             }}
           >
             <View style={styles.scheduleCntr}>
-              <Text style={styles.scheduleTitle}>{item.title}</Text>
-              <Text style={styles.scheduleLocation}>{item.location}</Text>
+              <Text style={[styles.scheduleTitle, SharedStyles.projectFont]}>
+                {item.title}
+              </Text>
+              <Text style={[styles.scheduleLocation, SharedStyles.projectFont]}>
+                {item.location}
+              </Text>
 
               {context.faveIds.includes(item.id) ? (
                 <Text />

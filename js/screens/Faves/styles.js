@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   scheduleTitle: {
-    fontSize: 17,
     width: 250
   },
   titleCntr: {
@@ -15,13 +14,14 @@ const styles = StyleSheet.create({
     marginLeft: 5
   },
   scheduleCntr: {
-    margin: 10,
-  
+    margin: 10
   },
   scheduleLocation: {
     marginTop: 5,
     color: "#999999",
-    fontSize: 14
+    fontSize: 14,
+    fontWeight: 300,
+    fontSize: 15
   },
   heart: {
     position: "absolute",
