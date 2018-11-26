@@ -21,6 +21,8 @@ Vanessa Bertoletti.
 
 ![ios](https://user-images.githubusercontent.com/40447526/48999318-1b509400-f10b-11e8-930d-52eae1af213e.gif)
 
+![android](https://user-images.githubusercontent.com/40447526/48999773-7c2c9c00-f10c-11e8-9857-1bd3bace4c80.gif)
+
 
 
 
