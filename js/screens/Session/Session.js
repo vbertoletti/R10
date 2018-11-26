@@ -15,7 +15,6 @@ import PropTypes from "prop-types";
 import SharedStyles from "../../config/styles";
 
 const Session = ({ data, faveIds, methods, navigation }) => {
-  console.log(data, faveIds, methods, navigation);
   return (
     <View style={styles.container}>
       <ScrollView>

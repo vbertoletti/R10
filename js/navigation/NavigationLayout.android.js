@@ -7,7 +7,6 @@ import Faves from "./../screens/Faves";
 import { sharedNavigationOptions } from "./config";
 import Session from "./../screens/Session";
 import { TouchableOpacity } from "react-native";
-
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const AboutStack = createStackNavigator(
