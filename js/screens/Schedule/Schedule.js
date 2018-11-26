@@ -35,8 +35,6 @@ const Schedule = ({ data, navigation, context }) => {
               </Text>
 
               {context.faveIds.includes(item.id) ? (
-                <Text />
-              ) : (
                 <Icon
                   name={Platform.select({
                     ios: "ios-heart",
@@ -46,6 +44,8 @@ const Schedule = ({ data, navigation, context }) => {
                   color="#cf392a"
                   style={styles.heart}
                 />
+              ) : (
+                <Text />
               )}
             </View>
           </TouchableOpacity>

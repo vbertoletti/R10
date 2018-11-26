@@ -22,8 +22,6 @@ const Session = ({ data, faveIds, methods, navigation }) => {
           {data.location}
         </Text>
         {faveIds.includes(data.id) ? (
-          <Text />
-        ) : (
           <Icon
             name={Platform.select({
               ios: "ios-heart",
@@ -33,6 +31,8 @@ const Session = ({ data, faveIds, methods, navigation }) => {
             color="#cf392a"
             style={styles.heart}
           />
+        ) : (
+          <Text />
         )}
         <Text style={[styles.title, SharedStyles.projectFont]}>
           {data.title}
@@ -61,7 +61,7 @@ const Session = ({ data, faveIds, methods, navigation }) => {
           ) : (
             <View style={styles.speaker}>
               <Text style={[styles.speakerName, SharedStyles.projectFont]}>
-                You! Go network 🤝{" "}
+                You! Go network 🤝
               </Text>
             </View>
           )}
