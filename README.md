@@ -3,7 +3,7 @@
 This is a mobile application using React Native for an upcoming developer conference called R10. The app is compatable with both iOS and Android.
 
 ## Technologies Used
-`Front End`: React Native and Apollo Client to fetch data from a GraphQL API
+`Front End`: React Native and Apollo to fetch data from a GraphQL API
 `Back end`: Realm as DB
 
 ##  Installation
