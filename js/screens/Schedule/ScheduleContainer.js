@@ -3,7 +3,7 @@ import Schedule from "./Schedule";
 import React, { Component } from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { formatSessionData } from "./helper";
+import { formatSessionData } from "../../lib/helper";
 import FavesContext from "../../context/FavesContext";
 
 const GET_SCHEDULE = gql`

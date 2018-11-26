@@ -1,24 +1,20 @@
 import React, { Component } from "react";
 import realm from "../../config/models";
-
 const FavesContext = React.createContext();
-
 class FavesProvider extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       faveIds: []
     };
   }
-
-  componentDidMount() {
-    this.FavedIdsSession();
-  }
-
-  FavedIdsSession() {
+  getFavedSessionsIds() {
     const getAllFaves = realm.objects("Faves").map(element => element.id);
     this.setState({ faveIds: getAllFaves });
+  }
+
+  componentDidMount() {
+    this.getFavedSessionsIds();
   }
 
   createFave(id) {
@@ -33,7 +29,7 @@ class FavesProvider extends Component {
     }
   }
 
-  getAllFaves() {
+  queryAllFaves() {
     realm.write(() => {
       let favs = realm.objects("Faves").map(element => element.id);
       this.setState({ faveIds: favs });
@@ -54,8 +50,8 @@ class FavesProvider extends Component {
       <FavesContext.Provider
         value={{
           ...this.state,
+          queryAllFaves: this.queryAllFaves,
           deleteFave: this.deleteFave,
-          getAllFaves: this.getAllFaves,
           createFave: this.createFave
         }}
       >
@@ -64,6 +60,5 @@ class FavesProvider extends Component {
     );
   }
 }
-
 export { FavesProvider };
 export default FavesContext;

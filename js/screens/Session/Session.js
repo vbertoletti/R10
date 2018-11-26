@@ -12,7 +12,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import LinearGradient from "react-native-linear-gradient";
 
-const Session = ({ data, createFave, deleteFave, faveIds, navigation }) => {
+const Session = ({ data, createFave, deleteFave, faveIds, navigation}) => {
   return (
     <View style={styles.container}>
       <ScrollView>

@@ -13,11 +13,8 @@ import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
 import PropTypes from "prop-types";
 
-//getting graphql schema data, navigation options and realm methods for the faves
 const Schedule = ({ data, navigation, context }) => {
-
-  const favedArray = [];
-
+  console.log(context);
   return (
     <View>
       <StatusBar barStyle="light-content" />
@@ -33,8 +30,8 @@ const Schedule = ({ data, navigation, context }) => {
               <Text style={styles.scheduleTitle}>{item.title}</Text>
               <Text style={styles.scheduleLocation}>{item.location}</Text>
 
-              {favedArray.includes(item.id) ? (
-                <Text> hi </Text>
+              {context.faveIds.includes(item.id) ? (
+                <Text />
               ) : (
                 <Icon
                   name={Platform.select({
@@ -44,12 +41,8 @@ const Schedule = ({ data, navigation, context }) => {
                   size={20}
                   color="#cf392a"
                   style={styles.heart}
-                  onPress={() =>
-                    context.favesIds.map(item => favedArray.push(item.id))
-                  }
                 />
               )}
-              {console.log(favedArray)}
             </View>
           </TouchableOpacity>
         )}
@@ -71,6 +64,5 @@ export default withNavigation(Schedule);
 
 Schedule.propTypes = {
   data: PropTypes.array,
-  navigation: PropTypes.object,
-  context: PropTypes.object
+  navigation: PropTypes.object
 };

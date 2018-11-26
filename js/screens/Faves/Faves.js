@@ -1,14 +1,15 @@
 import React from "react";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import {
   View,
   Text,
   SectionList,
   StatusBar,
-  TouchableHighlight
+  TouchableOpacity,
+  Platform
 } from "react-native";
 import styles from "../Schedule/styles";
 import moment from "moment";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Faves = ({ faves, faveIds, navigation }) => {
   return (
@@ -16,30 +17,36 @@ const Faves = ({ faves, faveIds, navigation }) => {
       <StatusBar barStyle="light-content" />
       <SectionList
         renderItem={({ item }) => (
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={() => {
               navigation.navigate("Session", { id: item.id });
             }}
-            underlayColor="#e6e6e6"
-            activeOpacity={0.7}
+            activeOpacity={0.5}
           >
             <View>
-              <View>
-                <Text>{item.title}</Text>
-                <Text>{item.location}</Text>
+              <View style={styles.scheduleCntr}>
+                <Text style={styles.scheduleTitle}>{item.title}</Text>
+                <Text style={styles.scheduleLocation}>{item.location}</Text>
                 {faveIds.find(item => item === item.id) && (
-                  <Ionicons
-                    name="ios-heart"
-                    size={"horizontal" ? 20 : 25}
-                    color="red"
+                  <Icon
+                    name={Platform.select({
+                      ios: "ios-heart",
+                      android: "md-heart"
+                    })}
+                    size={20}
+                    color="#cf392a"
                   />
                 )}
               </View>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         )}
         renderSectionHeader={({ section }) => (
-          <Text>{moment(section.title).format("LT")}</Text>
+          <View style={styles.titleCntr}>
+            <Text style={styles.momentTime}>
+              {moment(section.title).format("LT")}
+            </Text>
+          </View>
         )}
         sections={faves}
         keyExtractor={(item, index) => item + index}
