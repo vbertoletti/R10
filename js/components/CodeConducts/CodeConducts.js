@@ -37,12 +37,13 @@ class CodeConducts extends React.Component {
   }
 
   render() {
+    const { data } = this.props;
     return (
       <View>
         {this.state.isShown ? (
           <View>
             <TouchableOpacity onPress={() => this.openDescription()}>
-              <Text style={styles.conductText}> - {conduct.title}</Text>
+              <Text style={styles.conductText}> - {data.title}</Text>
             </TouchableOpacity>
             <Animated.View
               style={{
@@ -50,14 +51,12 @@ class CodeConducts extends React.Component {
                 opacity: this.state.opacity
               }}
             >
-              <Text style={styles.conductDescription}>
-                {conduct.description}
-              </Text>
+              <Text style={styles.conductDescription}>{data.description}</Text>
             </Animated.View>
           </View>
         ) : (
           <TouchableOpacity onPress={() => this.openDescription()}>
-            <Text style={styles.conductText}> + {conduct.title}</Text>
+            <Text style={styles.conductText}> + {data.title}</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -67,9 +66,9 @@ class CodeConducts extends React.Component {
 
 export default CodeConducts;
 
-// CodeConducts.propTypes = {
-//   object: PropTypes.shape({
-//     title: PropTypes.string,
-//     description: PropTypes.string
-//   })
-// };
+CodeConducts.propTypes = {
+  object: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string
+  })
+};

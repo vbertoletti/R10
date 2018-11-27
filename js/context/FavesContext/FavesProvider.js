@@ -13,45 +13,29 @@ class FavesProvider extends Component {
     this.favedIds();
   }
 
-  getFaves = async () => {
-    try {
-      let result = await realm.objects("Faves").map(elem => elem.id);
-      return result;
-    } catch (err) {
-      console.log(err);
-    }
+  getFaves = () => {
+    let result = realm.objects("Faves").map(elem => elem.id);
+    return result;
   };
 
-  async createFave(id) {
-    try {
-      realm.write(() => {
-        await realm.create("Faves", { id: id, faved_on: new Date() });
-      });
-      this.queryAllFaves();
-    } catch (err) {
-      console.log(err);
-    }
+  createFave(id) {
+    realm.write(() => {
+      realm.create("Faves", { id: id, faved_on: new Date() });
+    });
+    this.queryAllFaves();
   }
 
-  async deleteFave(id) {
-    try {
-      realm.write(() => {
-        const deleteId = await realm.objects("Faves").filtered(`id ==$0`, id);
-        realm.delete(deleteId);
-      });
-      this.queryAllFaves();
-    } catch (err) {
-      console.log(err);
-    }
+  deleteFave(id) {
+    realm.write(() => {
+      const deleteId = realm.objects("Faves").filtered(`id ==$0`, id);
+      realm.delete(deleteId);
+    });
+    this.queryAllFaves();
   }
 
-  favedIds = async () => {
-    try {
-      let favedids = await this.setState({ faveIds: this.getFaves() });
-      return favedids;
-    } catch (err) {
-      console.log(err);
-    }
+  favedIds = () => {
+    let favedids = this.setState({ faveIds: this.getFaves() });
+    return favedids;
   };
 
   render() {

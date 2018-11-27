@@ -1,14 +1,9 @@
 import React from "react";
-import {
-  Text,
-  View,
-  Image,
-  ScrollView
-} from "react-native";
+import { Text, View, Image, ScrollView } from "react-native";
 import styles from "./styles";
 import PropTypes from "prop-types";
 import SharedStyles from "../../config/styles";
-import CodeConducts from "../../components/CodeConducts";
+import CodeConducts from "../../components/CodeConducts/CodeConducts";
 
 const About = ({ data }) => {
   return (
@@ -36,8 +31,8 @@ const About = ({ data }) => {
           Code of Conduct
         </Text>
 
-        {data.allConducts.map(conduct, index => (
-          <CodeConducts conduct={conduct} key={index}/>
+        {data.allConducts.map((conduct, index) => (
+          <CodeConducts data={conduct} key={index} />
         ))}
 
         <View style={[styles.aboutFooter, SharedStyles.projectFont]}>
