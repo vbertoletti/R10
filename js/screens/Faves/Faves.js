@@ -22,7 +22,6 @@ const Faves = ({ faves, navigation }) => {
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("Session", { key: item.id });
-              console.log({id: item.id})
             }}
             activeOpacity={0.5}
           >
