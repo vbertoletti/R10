@@ -10,23 +10,32 @@ import {
 } from "react-native";
 import styles from "./styles";
 import PropTypes from "prop-types";
-import SharedStyles from "../../config/styles"
+import SharedStyles from "../../config/styles";
 
 class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isShown: false,
-      height: new Animated.Value(0)
+      height: new Animated.Value(0),
+      opacity: new Animated.Value(0)
     };
   }
 
   startAnimation() {
-    Animated.timing(this.state.height, {
-      toValue: this.state.isShown ? 0 : 200,
-      duration: 50,
-      easing: Easing.elastic(0.6)
-    }).start();
+    Animated.parallel([
+      Animated.timing(this.state.height, {
+        toValue: this.state.isShown ? 0 : 200,
+        duration: 50,
+        easing: Easing.elastic(0.9)
+      }),
+
+      Animated.timing(this.state.opacity, {
+        toValue: this.state.isShown ? 0 : 200,
+        duration: 700,
+        easing: Easing.elastic(0.9)
+      })
+    ]).start();
   }
 
   toggleDescription() {
@@ -51,15 +60,19 @@ class About extends React.Component {
             R10 is a conference that focuses on just about any topic related to
             dev.
           </Text>
-          <Text style={[styles.aboutHeadings, SharedStyles.projectFont]}>Date & Venue</Text>
+          <Text style={[styles.aboutHeadings, SharedStyles.projectFont]}>
+            Date & Venue
+          </Text>
           <Text style={[styles.aboutText, SharedStyles.projectFont]}>
             The R10 conference will take place on Tuesday, June 27th, 2017 in
             Vancouver, BC.
           </Text>
-          <Text style={[styles.aboutHeadings, SharedStyles.projectFont]}>Code of Conduct</Text>
+          <Text style={[styles.aboutHeadings, SharedStyles.projectFont]}>
+            Code of Conduct
+          </Text>
 
           {this.props.data.allConducts.map(conduct => (
-            <View key={conduct.id} >
+            <View key={conduct.id}>
               <TouchableOpacity onPress={() => this.toggleDescription()}>
                 {this.state.isShown ? (
                   <Text style={styles.conductText}> - {conduct.title}</Text>
@@ -69,8 +82,15 @@ class About extends React.Component {
               </TouchableOpacity>
 
               {this.state.isShown && (
-                <Animated.View style={{ height: this.state.height }}>
-                  <Text style={styles.conductDescription}>{conduct.description}</Text>
+                <Animated.View
+                  style={{
+                    height: this.state.height,
+                    opacity: this.state.opacity
+                  }}
+                >
+                  <Text style={styles.conductDescription}>
+                    {conduct.description}
+                  </Text>
                 </Animated.View>
               )}
             </View>
