@@ -3,7 +3,7 @@ import { Text, View, Image, ScrollView } from "react-native";
 import styles from "./styles";
 import PropTypes from "prop-types";
 import SharedStyles from "../../config/styles";
-import CodeConducts from "../../components/CodeConducts/CodeConducts";
+import CodeConducts from "../../components/CodeConducts";
 
 const About = ({ data }) => {
   return (
@@ -46,8 +46,5 @@ const About = ({ data }) => {
 export default About;
 
 About.propTypes = {
-  object: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string
-  })
+  data: PropTypes.object
 };
